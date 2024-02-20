@@ -3,10 +3,10 @@
  *
  */
 
-import { TemplateBoilerplate } from './template-boilerplate'
+import { Home } from './pages/home/page'
 
 function App() {
-	return <TemplateBoilerplate />
+	return <Home />
 }
 
 export default App
