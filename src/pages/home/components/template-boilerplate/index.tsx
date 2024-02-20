@@ -5,6 +5,7 @@
  */
 
 import reactLogo from '@/assets/svg/react.svg'
+import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import viteLogo from '/vite.svg'
 
@@ -28,12 +29,12 @@ export function TemplateBoilerplate() {
 			</div>
 			<h2 className="text-2xl">Vite + React</h2>
 			<div className="flex w-[400px] flex-col items-center rounded-md border px-4 py-8">
-				<button
-					className="rounded-md border bg-slate-100 px-4 py-2"
+				<Button
+					className="rounded-md border bg-slate-100 px-4 py-2 text-black hover:text-white"
 					onClick={() => setCount((count) => count + 1)}
 				>
 					count is {count}
-				</button>
+				</Button>
 				<div className="mt-4 flex flex-col text-center">
 					<span>Edit</span>
 					<code>src/template-boilerplate.tsx</code>
