@@ -6,6 +6,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "outDir": "build/dist",
+    "types": ["@testing-library/jest-dom"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -27,6 +28,6 @@
       ]
     }
   },
-  "include": ["src/**/*", "custom.d.ts"],
+  "include": ["cypress", "src/**/*", "custom.d.ts", "src/vitest.setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
