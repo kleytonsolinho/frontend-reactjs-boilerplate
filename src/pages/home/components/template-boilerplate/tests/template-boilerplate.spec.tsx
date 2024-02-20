@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { TemplateBoilerplate } from '..'
 
@@ -8,24 +7,14 @@ describe('Template Boilerplate', () => {
 		render(<TemplateBoilerplate />)
 	})
 
-	it('should render initial state', async () => {
-		const button = screen.queryByText('count is 0')
-
-		expect(button).not.toBeNull()
-		expect(button?.innerHTML).toBe('count is 0')
+	it('should render header with text "BexUp Frontend Boilerplate"', async () => {
+		const header = screen.getByRole('heading', { level: 1 })
+		expect(header).toHaveTextContent('BexUp Frontend Boilerplate')
 	})
 
-	it('should increases counter on button click', async () => {
-		const user = userEvent.setup()
-		const button = screen.queryByText('count is 0')
-
-		expect(button).not.toBeNull()
-
-		await user.click(button as HTMLElement)
-		await user.click(button as HTMLElement)
-		await user.click(button as HTMLElement)
-
-		expect(button?.innerHTML).toBe('count is 3')
+	it('should render header with text "Vite + React"', async () => {
+		const header = screen.getByRole('heading', { level: 2 })
+		expect(header).toHaveTextContent('Vite + React')
 	})
 
 	it('should displays React logo with animation', async () => {
