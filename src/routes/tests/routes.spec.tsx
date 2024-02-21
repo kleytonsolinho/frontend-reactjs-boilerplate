@@ -5,15 +5,15 @@ import { BrowserRouter } from 'react-router-dom'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { AppRoutes } from '../routes'
 
-describe('App Routes', () => {
-	beforeAll(async () => {
-		render(
-			<BrowserRouter>
-				<AppRoutes />
-			</BrowserRouter>
-		)
-	})
+beforeAll(async () => {
+	render(
+		<BrowserRouter>
+			<AppRoutes />
+		</BrowserRouter>
+	)
+})
 
+describe('App Routes', () => {
 	it('should render element on HOME route', async () => {
 		window.history.pushState({}, 'Home page', routes.HOME)
 

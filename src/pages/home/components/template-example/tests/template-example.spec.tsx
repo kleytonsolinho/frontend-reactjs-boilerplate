@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import { beforeAll, describe, expect, it } from 'vitest'
-import { TemplateBoilerplate } from '..'
+import { TemplateExample } from '..'
 
-describe('Template Boilerplate', () => {
+describe('Template Component Example', () => {
 	beforeAll(async () => {
-		render(<TemplateBoilerplate />)
+		render(<TemplateExample />)
 	})
 
 	it('should render header with text "BexUp Frontend Boilerplate"', async () => {

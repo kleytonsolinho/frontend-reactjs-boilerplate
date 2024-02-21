@@ -3,8 +3,8 @@
  *
  */
 
-import { TemplateBoilerplate } from './components/template-boilerplate'
+import { TemplateExample } from './components/template-example'
 
 export function Home() {
-	return <TemplateBoilerplate />
+	return <TemplateExample />
 }
