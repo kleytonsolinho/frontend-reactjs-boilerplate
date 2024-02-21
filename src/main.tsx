@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
+import './language/i18n.ts'
 import { AppRoutes } from './routes/routes.tsx'
 import './styles/global.css'
 
