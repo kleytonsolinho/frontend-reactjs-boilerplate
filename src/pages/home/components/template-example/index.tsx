@@ -48,7 +48,7 @@ export function TemplateExample() {
 						rel="noreferrer"
 						className="ml-1 text-blue-500 underline"
 					>
-						aqui
+						{t('clickHere')}
 					</a>
 				</p>
 			</section>
