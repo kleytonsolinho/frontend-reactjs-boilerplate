@@ -15,12 +15,14 @@ i18next
 					hello: 'Olá mundo!',
 					readDocs:
 						'Leia a documentação do boilerplate para mais informações clicando',
+					clickHere: 'aqui',
 				},
 			},
 			en: {
 				translation: {
 					hello: 'Hello World!',
 					readDocs: 'Read the boilerplate documentation for more information',
+					clickHere: 'here',
 				},
 			},
 			es: {
@@ -28,6 +30,7 @@ i18next
 					hello: '¡Hola, mundo!',
 					readDocs:
 						'Lea la documentación del boilerplate para obtener más información',
+					clickHere: 'aquí',
 				},
 			},
 		},
