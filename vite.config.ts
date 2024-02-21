@@ -1,4 +1,5 @@
 /// <reference types="vitest" />
+
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import react from '@vitejs/plugin-react'
 import path from 'path'
@@ -26,6 +27,7 @@ const vitestConfig: VitestUserConfigInterface = {
 				'src/shared/**',
 				'src/components/ui/**',
 				'src/api/queries/**',
+				'src/language/**',
 			],
 		},
 	},
