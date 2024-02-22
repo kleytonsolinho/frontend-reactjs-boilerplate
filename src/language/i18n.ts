@@ -1,37 +1,23 @@
 import i18next from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
+import translationEN from './en/en-US.json'
+import translationES from './es/es-ES.json'
+import translationPT from './pt/pt-BR.json'
+
+export const DEFAULT_LANGUAGE = 'pt'
 
 i18next
 	.use(LanguageDetector)
 	.use(initReactI18next)
 	.init({
 		debug: process.env.NODE_ENV === 'development',
-		fallbackLng: 'pt',
-		lng: 'pt',
-		resources: {
-			pt: {
-				translation: {
-					hello: 'Olá mundo!',
-					readDocs:
-						'Leia a documentação do boilerplate para mais informações clicando',
-					clickHere: 'aqui',
-				},
-			},
-			en: {
-				translation: {
-					hello: 'Hello World!',
-					readDocs: 'Read the boilerplate documentation for more information',
-					clickHere: 'here',
-				},
-			},
-			es: {
-				translation: {
-					hello: '¡Hola, mundo!',
-					readDocs:
-						'Lea la documentación del boilerplate para obtener más información',
-					clickHere: 'aquí',
-				},
-			},
-		},
+		fallbackLng: DEFAULT_LANGUAGE,
+		lng: DEFAULT_LANGUAGE,
 	})
+
+i18next.addResourceBundle('pt', 'translation', translationPT['translation'])
+i18next.addResourceBundle('en', 'translation', translationEN['translation'])
+i18next.addResourceBundle('es', 'translation', translationES['translation'])
+
+  export const i18n = i18next
