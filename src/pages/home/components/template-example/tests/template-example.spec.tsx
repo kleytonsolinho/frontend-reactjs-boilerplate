@@ -1,10 +1,15 @@
+import { TemplateExample } from '@/pages/home/components/template-example'
 import { render, screen } from '@testing-library/react'
+import { BrowserRouter } from 'react-router-dom'
 import { beforeAll, describe, expect, it } from 'vitest'
-import { TemplateExample } from '..'
 
 describe('Template Component Example', () => {
 	beforeAll(async () => {
-		render(<TemplateExample />)
+		render(
+			<BrowserRouter>
+				<TemplateExample />
+			</BrowserRouter>
+		)
 	})
 
 	it('should render header with text "BexUp Frontend Boilerplate"', async () => {
