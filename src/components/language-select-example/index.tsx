@@ -3,6 +3,7 @@ import SpanishFlag from '@/assets/svg/flags/es-flag.svg'
 import AmericanFlag from '@/assets/svg/flags/us-flag.svg'
 import { ToggleGroup } from '@/components/ui/toggle-group'
 import { LanguageType, useLanguage } from '@/hooks/use-language'
+import { useSearchParams } from 'react-router-dom'
 import { LanguageSelectItemExample } from './language-select-item-example'
 
 type LanguageTypes = {
@@ -30,6 +31,7 @@ const languages: LanguageTypes[] = [
 ]
 
 export function LanguageSelectExample() {
+	const [, setSearchParams] = useSearchParams()
 	const { currentLanguage, changeLanguage } = useLanguage()
 
 	return (
@@ -40,7 +42,12 @@ export function LanguageSelectExample() {
 					value={language.value}
 					label={language.label}
 					flag={language.flag}
-					handleLanguageChange={() => changeLanguage(language.value)}
+					handleLanguageChange={() => {
+						changeLanguage(language.value)
+						setSearchParams({
+							languageSelected: language.value,
+						})
+					}}
 				/>
 			))}
 		</ToggleGroup>
