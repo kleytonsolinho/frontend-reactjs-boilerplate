@@ -1,0 +1,10 @@
+{
+  "translation": {
+    "home": {
+      "hello": "Hello World!",
+      "readDocs":
+      "Read the boilerplate documentation for more information",
+      "clickHere": "here"
+    }
+  }
+}
