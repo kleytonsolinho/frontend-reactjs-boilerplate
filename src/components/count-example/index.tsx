@@ -4,18 +4,18 @@
  *
  */
 
-import { useState } from 'react'
+import { useCountExample } from '@/stores/use-count-example'
 import { Button } from '../ui/button'
 
 export function CountExample() {
-	const [count, setCount] = useState(0)
+	const { count, increaseCount } = useCountExample()
 
 	return (
 		<div className="flex w-[400px] flex-col items-center rounded-md border px-4 py-8">
 			<Button
 				data-cy="home-button-count"
 				className="rounded-md border bg-slate-100 px-4 py-2 text-black hover:text-white"
-				onClick={() => setCount((count) => count + 1)}
+				onClick={increaseCount}
 			>
 				count is {count}
 			</Button>
