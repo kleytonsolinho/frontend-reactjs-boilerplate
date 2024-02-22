@@ -1,7 +1,8 @@
+import { LanguageSelectExample } from '@/components/language-select-example'
 import { ToggleGroup } from '@/components/ui/toggle-group'
 import { cleanup, fireEvent, render } from '@testing-library/react'
+import { BrowserRouter } from 'react-router-dom'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { LanguageSelectExample } from '..'
 import { LanguageSelectItemExample } from '../language-select-item-example'
 
 describe('LanguageSelectExample Component', () => {
@@ -10,7 +11,11 @@ describe('LanguageSelectExample Component', () => {
 	})
 
 	it('should renders language options correctly', () => {
-		const { queryAllByTestId } = render(<LanguageSelectExample />)
+		const { queryAllByTestId } = render(
+			<BrowserRouter>
+				<LanguageSelectExample />
+			</BrowserRouter>
+		)
 		const buttons = queryAllByTestId(/language-select-/i)
 
 		expect(buttons).toHaveLength(3)
