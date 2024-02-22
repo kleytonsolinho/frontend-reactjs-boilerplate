@@ -21,7 +21,7 @@ export function TemplateExample() {
 					data-cy="home-language-text"
 					className="text-4xl font-bold text-blue-500"
 				>
-					{t('hello')}
+					{t('home.hello')}
 				</span>
 				<h1 data-cy="home-title" className="text-4xl font-bold">
 					BexUp Frontend Boilerplate
@@ -41,14 +41,14 @@ export function TemplateExample() {
 				<h2 className="text-2xl font-semibold">Vite + React</h2>
 				<CountExample />
 				<p className="max-w-[300px] text-center">
-					{t('readDocs')}
+					{t('home.readDocs')}
 					<a
 						href="#"
 						target="_blank"
 						rel="noreferrer"
 						className="ml-1 text-blue-500 underline"
 					>
-						{t('clickHere')}
+						{t('home.clickHere')}
 					</a>
 				</p>
 			</section>
