@@ -23,13 +23,18 @@ describe('LanguageSelectExample Component', () => {
 
 	it('should calls changeLanguage when a language is selected', async () => {
 		const handleLanguageChange = vi.fn()
+		const setSearchParams = vi.fn()
+
 		const { queryByTestId } = render(
 			<ToggleGroup type="single" defaultValue="pt">
 				<LanguageSelectItemExample
 					value="en"
 					label="English"
 					flag="AmericanFlag"
-					handleLanguageChange={() => handleLanguageChange('en')}
+					handleLanguageChange={() => {
+						handleLanguageChange('en')
+						setSearchParams({ languageSelected: 'en' })
+					}}
 				/>
 			</ToggleGroup>
 		)
@@ -41,5 +46,7 @@ describe('LanguageSelectExample Component', () => {
 
 		expect(handleLanguageChange).toHaveBeenCalledTimes(1)
 		expect(handleLanguageChange).toHaveBeenCalledWith('en')
+		expect(setSearchParams).toHaveBeenCalledTimes(1)
+		expect(setSearchParams).toHaveBeenCalledWith({ languageSelected: 'en' })
 	})
 })
