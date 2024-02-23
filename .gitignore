@@ -14,6 +14,9 @@ dist
 dist-ssr
 *.local
 .env
+dependencygraph.svg
+.dependency-cruiser.cjs
+graph.svg
 
 # Editor directories and files
 .vscode/*
@@ -25,3 +28,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
