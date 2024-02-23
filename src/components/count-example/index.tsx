@@ -4,18 +4,20 @@
  *
  */
 
-import { useCountExample } from '@/stores/use-count-example'
 import { Button } from '../ui/button'
 
-export function CountExample() {
-	const { count, increaseCount } = useCountExample()
+type CountExampleProps = {
+	count: number
+	handleClick: () => void
+}
 
+export function CountExample({ count = 0, handleClick }: CountExampleProps) {
 	return (
 		<div className="flex w-[400px] flex-col items-center rounded-md border px-4 py-8">
 			<Button
 				data-cy="home-button-count"
 				className="rounded-md border bg-slate-100 px-4 py-2 text-black hover:text-white"
-				onClick={increaseCount}
+				onClick={handleClick}
 			>
 				count is {count}
 			</Button>
