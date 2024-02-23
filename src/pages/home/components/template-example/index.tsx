@@ -7,11 +7,13 @@
 import reactLogo from '@/assets/svg/react.svg'
 import { CountExample } from '@/components/count-example'
 import { LanguageSelectExample } from '@/components/language-select-example'
+import { useCountExample } from '@/stores/use-count-example'
 import { useTranslation } from 'react-i18next'
 import viteLogo from '/vite.svg'
 
 export function TemplateExample() {
 	const { t } = useTranslation()
+	const { count, increaseCount } = useCountExample()
 
 	return (
 		<main className="flex min-h-screen w-full items-center justify-center">
@@ -39,7 +41,7 @@ export function TemplateExample() {
 					</a>
 				</div>
 				<h2 className="text-2xl font-semibold">Vite + React</h2>
-				<CountExample />
+				<CountExample count={count} handleClick={increaseCount} />
 				<p className="max-w-[300px] text-center">
 					{t('home.readDocs')}
 					<a
