@@ -28,11 +28,3 @@ export interface HttpResponse<R = any> {
 export interface IHttpClient<R = any> {
 	execute: (data: HttpRequest) => Promise<HttpResponse<R>>
 }
-
-export class HttpClient implements IHttpClient {
-	constructor(private readonly client: IHttpClient) {}
-
-	async execute(data: HttpRequest): Promise<HttpResponse> {
-		return this.client.execute(data)
-	}
-}
