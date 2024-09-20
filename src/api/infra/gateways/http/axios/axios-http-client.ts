@@ -1,11 +1,13 @@
 import axios, { AxiosError } from 'axios'
 
 import {
+	HttpClientError,
 	HttpRequest,
 	HttpResponse,
 	HttpStatusCode,
 	IHttpClient,
 } from '../http-client'
+import { t } from 'i18next'
 
 export class AxiosHttpClient implements IHttpClient {
 	async execute(data: HttpRequest): Promise<HttpResponse> {
@@ -24,9 +26,17 @@ export class AxiosHttpClient implements IHttpClient {
 			}
 		} catch (error) {
 			const axiosError = error as AxiosError
+			const statusCode =
+				axiosError.response?.status || HttpStatusCode.serverError
+			const message = axiosError.message || t('error-http.UnexpectedError')
+
 			return {
-				statusCode: HttpStatusCode.serverError,
-				body: axiosError,
+				statusCode,
+				body: new HttpClientError(
+					statusCode,
+					message,
+					axiosError.response?.data
+				),
 			}
 		}
 	}
