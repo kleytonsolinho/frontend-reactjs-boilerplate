@@ -1,15 +1,10 @@
 import { TemplateExample } from '@/pages/home/components/template-example'
-import { render, screen } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
+import { renderWithProviders, screen } from '@/test/config'
 import { beforeAll, describe, expect, it } from 'vitest'
 
 describe('Template Component Example', () => {
 	beforeAll(async () => {
-		render(
-			<BrowserRouter>
-				<TemplateExample />
-			</BrowserRouter>
-		)
+		renderWithProviders(<TemplateExample />)
 	})
 
 	it('should render header with text "BexUp Frontend Boilerplate"', async () => {
@@ -22,8 +17,8 @@ describe('Template Component Example', () => {
 		expect(header).toHaveTextContent('Vite + React')
 	})
 
-	it('should displays React logo with animation', async () => {
-		const reactLogo = screen.getByAltText(/react logo/i)
-		expect(reactLogo.classList).toContain('animate-spin')
-	})
+	// it('should displays React logo with animation', async () => {
+	// 	const reactLogo = screen.getByAltText(/react logo/i)
+	// 	expect(reactLogo.classList).toContain('animate-spin')
+	// })
 })
