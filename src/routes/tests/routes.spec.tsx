@@ -1,16 +1,10 @@
-import { render, screen } from '@testing-library/react'
-
 import { routes } from '@/shared/routes'
-import { BrowserRouter } from 'react-router-dom'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { AppRoutes } from '../routes'
+import { renderWithProviders, screen } from '@/test/config'
 
 beforeAll(async () => {
-	render(
-		<BrowserRouter>
-			<AppRoutes />
-		</BrowserRouter>
-	)
+	renderWithProviders(<AppRoutes />)
 })
 
 describe('App Routes', () => {
