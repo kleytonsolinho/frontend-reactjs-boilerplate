@@ -2,7 +2,10 @@ import {
 	CreateUserUseCaseInputDTO,
 	CreateUserUseCaseOutputDTO,
 } from '@/api/infra/dtos/@example/create-user-dto'
-import { IHttpClient } from '@/api/infra/gateways/http/http-client'
+import {
+	HttpClientError,
+	IHttpClient,
+} from '@/api/infra/gateways/http/http-client'
 import { UnexpectedError } from '../../errors/unexpected-error'
 import { UserAlreadyTakenError } from '../../errors/user-already-taken-error'
 
@@ -28,7 +31,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 	): Promise<CreateUserUseCaseOutputDTO> {
 		const httpResponse = await this.httpClient.execute({
 			url: this.url,
-			method: 'post',
+			method: 'POST',
 			body: data,
 			headers: {
 				'Content-Type': 'application/json',
@@ -36,9 +39,8 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 			},
 		})
 
-		if (httpResponse.body?.error?.code) {
-			// or httpResponse.statusCode
-			switch (httpResponse.body.error?.code) {
+		if (httpResponse.body instanceof HttpClientError) {
+			switch (httpResponse.body.statusCode) {
 				case 400:
 					throw new UserAlreadyTakenError()
 				default:
