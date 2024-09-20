@@ -1,4 +1,9 @@
-import { HttpResponse, HttpStatusCode, IHttpClient } from '../http-client'
+import {
+	HttpClientError,
+	HttpResponse,
+	HttpStatusCode,
+	IHttpClient,
+} from '../http-client'
 
 export class InMemoryHttpClient implements IHttpClient {
 	public url?: string
@@ -18,6 +23,18 @@ export class InMemoryHttpClient implements IHttpClient {
 		this.headers = data.headers
 		this.params = data.params
 		this.token = token
+
+		if (this.response.statusCode >= 400) {
+			return {
+				statusCode: this.response.statusCode,
+				body: new HttpClientError(
+					this.response.statusCode,
+					'Error message',
+					this.response.body
+				),
+			}
+		}
+
 		return this.response
 	}
 }
