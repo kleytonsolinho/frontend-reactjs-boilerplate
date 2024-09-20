@@ -40,7 +40,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Usuário criado: %+v\n", user) // Exemplo de output
 
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusBadRequest)
+	w.WriteHeader(http.StatusCreated)
 
 	response, _ := json.Marshal(user)
 	w.Write(response)
