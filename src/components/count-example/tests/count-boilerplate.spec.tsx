@@ -1,12 +1,12 @@
 import { CountExample } from '@/components/count-example'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { screen, fireEvent, simpleRender } from '@/test/config'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 const fn = vi.fn()
 
 describe('Count Component Example', () => {
 	beforeAll(async () => {
-		render(<CountExample count={0} handleClick={fn} />)
+		simpleRender(<CountExample count={0} handleClick={fn} />)
 	})
 
 	it('should render initial state', async () => {
