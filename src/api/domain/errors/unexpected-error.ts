@@ -1,5 +1,7 @@
+import { t } from 'i18next'
+
 export class UnexpectedError extends Error {
 	constructor() {
-		super('Algo de errado aconteceu. Tente novamente em breve!')
+		super(t('error-http.UnexpectedError'))
 	}
 }
