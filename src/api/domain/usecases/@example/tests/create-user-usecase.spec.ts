@@ -1,10 +1,10 @@
-import { UnexpectedError } from '@/api/domain/errors/unexpected-error'
 import { UserAlreadyTakenError } from '@/api/domain/errors/user-already-taken-error'
 import { CreateUserUseCaseInputDTO } from '@/api/infra/dtos/@example/create-user-dto'
 import { InMemoryCookieClient } from '@/api/infra/gateways/cookie/in-memory/in-memory-cookie-client'
 import { InMemoryHttpClient } from '@/api/infra/gateways/http/in-memory/in-memory-http-client'
 import { describe, expect, it } from 'vitest'
 import { CreateUserUseCase } from '../create-user-usecase'
+import { UnexpectedError } from '@/api/domain/errors/unexpected-error'
 
 type SutTypes = {
 	sut: CreateUserUseCase
@@ -35,7 +35,7 @@ describe('CreateUserUseCase', () => {
 
 		await sut.execute(body)
 		expect(httpClient.url).toBe('any_url')
-		expect(httpClient.method).toBe('post')
+		expect(httpClient.method).toBe('POST')
 		expect(httpClient.body).toEqual(body)
 		expect(httpClient.headers).toEqual({
 			'Content-Type': 'application/json',
