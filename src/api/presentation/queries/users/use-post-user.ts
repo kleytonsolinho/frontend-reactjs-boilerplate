@@ -6,6 +6,7 @@ import {
 import { makeCookieClient } from '@/api/infra/gateways/factories/make-cookie-client'
 import { TOKEN_KEY } from '@/shared/constants'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 
 const createUserUseCase = makeCreateUserUseCase({ URI: '/users' })
@@ -18,6 +19,7 @@ type UsePostUserType = {
 export function usePostUser({ onSuccess }: UsePostUserType = {}) {
 	const queryClient = useQueryClient()
 	const token = cookie.get(TOKEN_KEY)
+	const { t } = useTranslation()
 
 	return useMutation({
 		mutationFn: ({ email, name, password }: CreateUserUseCaseInputDTO) =>
@@ -28,7 +30,10 @@ export function usePostUser({ onSuccess }: UsePostUserType = {}) {
 			})
 			onSuccess && onSuccess(data)
 
-			toast.success('Usuário criado com sucesso!')
+			toast.success(t('success-http.createUserSuccess'))
+		},
+		onError: (error) => {
+			toast.error(error.message)
 		},
 	})
 }
