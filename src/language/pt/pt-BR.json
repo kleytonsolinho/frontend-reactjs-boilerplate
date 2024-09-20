@@ -4,7 +4,16 @@
       "hello": "Olá mundo!",
       "readDocs":
       "Leia a documentação do boilerplate para mais informações clicando",
-      "clickHere": "aqui"
+      "clickHere": "aqui",
+      "createUser": "Criar usuário",
+      "count": "Contagem está em "
+    },
+    "error-http": {
+      "UserAlreadyTakenError": "Email ou nome de usuário já existe!",
+      "UnexpectedError": "Algo de errado aconteceu. Tente novamente em breve!"
+    },
+    "success-http": {
+      "createUserSuccess": "Usuário criado com sucesso!"
     }
   }
 }
