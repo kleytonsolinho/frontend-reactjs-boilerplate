@@ -10,14 +10,34 @@ import { LanguageSelectExample } from '@/components/language-select-example'
 import { useCountExample } from '@/stores/use-count-example'
 import { useTranslation } from 'react-i18next'
 import viteLogo from '/vite.svg'
+import { usePostUser } from '@/api/presentation/queries/users/use-post-user'
+import { LoadingSpinner } from '@/components/loading-spinner-example'
 
 export function TemplateExample() {
 	const { t } = useTranslation()
 	const { count, increaseCount } = useCountExample()
 
+	const { mutate: postUser, isPending: isPostUserLoading } = usePostUser()
+
+	const handlePostUser = () => {
+		postUser({
+			name: 'Teste',
+			email: 'teste@teste.com.br',
+			password: '123456',
+		})
+	}
+
 	return (
 		<main className="flex min-h-screen w-full items-center justify-center">
 			<section className="flex h-auto max-w-7xl flex-col items-center justify-center gap-y-8 rounded-lg border p-10 shadow-sm">
+				<button
+					type="button"
+					className="text-md rounded-md border bg-slate-100 px-4 py-1 hover:bg-slate-200"
+					onClick={handlePostUser}
+					disabled={isPostUserLoading}
+				>
+					{isPostUserLoading ? <LoadingSpinner /> : t('home.createUser')}
+				</button>
 				<LanguageSelectExample />
 				<span
 					data-cy="home-language-text"
@@ -33,11 +53,7 @@ export function TemplateExample() {
 						<img src={viteLogo} className="h-12 w-12" alt="Vite logo" />
 					</a>
 					<a href="https://react.dev" target="_blank" rel="noreferrer">
-						<img
-							src={reactLogo}
-							className="h-12 w-12 animate-spin duration-1000"
-							alt="React logo"
-						/>
+						<img src={reactLogo} className="h-12 w-12" alt="React logo" />
 					</a>
 				</div>
 				<h2 className="text-2xl font-semibold">Vite + React</h2>
