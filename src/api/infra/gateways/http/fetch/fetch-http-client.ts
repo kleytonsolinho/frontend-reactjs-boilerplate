@@ -1,4 +1,6 @@
+import { t } from 'i18next'
 import {
+	HttpClientError,
 	HttpRequest,
 	HttpResponse,
 	HttpStatusCode,
@@ -16,14 +18,20 @@ export class FetchHttpClient implements IHttpClient {
 
 			const responseBody = await response.json()
 
+			if (!response.ok) {
+				throw new HttpClientError(response.status, 'Fetch error', responseBody)
+			}
+
 			return {
 				statusCode: response.status,
 				body: responseBody,
 			}
 		} catch (error) {
+			const message =
+				error instanceof Error ? error.message : t('error-http.UnexpectedError')
 			return {
 				statusCode: HttpStatusCode.serverError,
-				body: error,
+				body: new HttpClientError(HttpStatusCode.serverError, message, error),
 			}
 		}
 	}
