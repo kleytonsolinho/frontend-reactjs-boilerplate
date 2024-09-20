@@ -1,4 +1,4 @@
-export type HttpMethod = 'get' | 'post' | 'put' | 'delete'
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 export enum HttpStatusCode {
 	ok = 200,
@@ -27,4 +27,15 @@ export interface HttpResponse<R = any> {
 
 export interface IHttpClient<R = any> {
 	execute: (data: HttpRequest) => Promise<HttpResponse<R>>
+}
+
+export class HttpClientError extends Error {
+	public statusCode: number
+	public body: any
+
+	constructor(statusCode: number, message: string, body?: any) {
+		super(message)
+		this.statusCode = statusCode
+		this.body = body
+	}
 }
