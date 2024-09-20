@@ -1,9 +1,9 @@
 import { LanguageSelectExample } from '@/components/language-select-example'
 import { ToggleGroup } from '@/components/ui/toggle-group'
-import { cleanup, fireEvent, render } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
+import { cleanup, fireEvent } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { LanguageSelectItemExample } from '../language-select-item-example'
+import { renderWithProviders } from '@/test/config'
 
 describe('LanguageSelectExample Component', () => {
 	afterEach(() => {
@@ -11,11 +11,7 @@ describe('LanguageSelectExample Component', () => {
 	})
 
 	it('should renders language options correctly', () => {
-		const { queryAllByTestId } = render(
-			<BrowserRouter>
-				<LanguageSelectExample />
-			</BrowserRouter>
-		)
+		const { queryAllByTestId } = renderWithProviders(<LanguageSelectExample />)
 		const buttons = queryAllByTestId(/language-select-/i)
 
 		expect(buttons).toHaveLength(3)
@@ -25,7 +21,7 @@ describe('LanguageSelectExample Component', () => {
 		const handleLanguageChange = vi.fn()
 		const setSearchParams = vi.fn()
 
-		const { queryByTestId } = render(
+		const { queryByTestId } = renderWithProviders(
 			<ToggleGroup type="single" defaultValue="pt">
 				<LanguageSelectItemExample
 					value="en"
