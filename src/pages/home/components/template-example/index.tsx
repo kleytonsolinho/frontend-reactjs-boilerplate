@@ -24,6 +24,7 @@ export function TemplateExample() {
 			name: 'Teste',
 			email: 'teste@teste.com.br',
 			password: '123456',
+			response_status_code: 500,
 		})
 	}
 
