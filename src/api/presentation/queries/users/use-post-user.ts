@@ -1,7 +1,7 @@
 import { makeCreateUserUseCase } from '@/api/domain/usecases/factories/make-create-user-usecase'
 import {
-	CreateUserUseCaseInputDTO,
-	CreateUserUseCaseOutputDTO,
+	PostUserUseCaseInputDTO,
+	PostUserUseCaseOutputDTO,
 } from '@/api/infra/dtos/@example/create-user-dto'
 import { makeCookieClient } from '@/api/infra/gateways/factories/make-cookie-client'
 import { TOKEN_KEY } from '@/shared/constants'
@@ -13,16 +13,16 @@ const createUserUseCase = makeCreateUserUseCase({ URI: '/users' })
 const cookie = makeCookieClient()
 
 type UsePostUserType = {
-	onSuccess?: (data: CreateUserUseCaseOutputDTO) => void
+	onSuccess?: (data: PostUserUseCaseOutputDTO) => void
 }
 
-export function usePostUser({ onSuccess }: UsePostUserType = {}) {
+export function usePostUserCleanArch({ onSuccess }: UsePostUserType = {}) {
 	const queryClient = useQueryClient()
 	const token = cookie.get(TOKEN_KEY)
 	const { t } = useTranslation()
 
 	return useMutation({
-		mutationFn: (payload: CreateUserUseCaseInputDTO) =>
+		mutationFn: (payload: PostUserUseCaseInputDTO) =>
 			createUserUseCase.execute(payload, token),
 		onSuccess: (data) => {
 			queryClient.invalidateQueries({
