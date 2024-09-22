@@ -10,14 +10,19 @@ import { LanguageSelectExample } from '@/components/language-select-example'
 import { useCountExample } from '@/stores/use-count-example'
 import { useTranslation } from 'react-i18next'
 import viteLogo from '/vite.svg'
-import { usePostUser } from '@/api/presentation/queries/users/use-post-user'
+// import { usePostUserCleanArch } from '@/api/presentation/queries/users/use-post-user'
 import { LoadingSpinner } from '@/components/loading-spinner-example'
+import { usePostUserService } from '@/api2/@queries/users/use-post-user'
 
 export function TemplateExample() {
 	const { t } = useTranslation()
 	const { count, increaseCount } = useCountExample()
 
-	const { mutate: postUser, isPending: isPostUserLoading } = usePostUser()
+	// const { mutate: postUser, isPending: isPostUserLoading } =
+	// 	usePostUserCleanArch()
+
+	const { mutate: postUser, isPending: isPostUserLoading } =
+		usePostUserService()
 
 	const handlePostUser = () => {
 		postUser({
