@@ -22,8 +22,8 @@ export function usePostUser({ onSuccess }: UsePostUserType = {}) {
 	const { t } = useTranslation()
 
 	return useMutation({
-		mutationFn: ({ email, name, password }: CreateUserUseCaseInputDTO) =>
-			createUserUseCase.execute({ email, name, password }, token),
+		mutationFn: (payload: CreateUserUseCaseInputDTO) =>
+			createUserUseCase.execute(payload, token),
 		onSuccess: (data) => {
 			queryClient.invalidateQueries({
 				queryKey: ['GET_ONE_USER_KEY'],
