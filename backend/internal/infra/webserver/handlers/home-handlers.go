@@ -5,19 +5,23 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"time"
 
 	"github.com/google/uuid"
 )
 
-// Struct para representar o usuário
 type User struct {
-	ID    uuid.UUID `json:"id"`
-	Name  string    `json:"name"`
-	Email string    `json:"email"`
+	ID                 uuid.UUID `json:"id"`
+	Name               string    `json:"name"`
+	Email              string    `json:"email"`
+	Password           string    `json:"password"`
+	CreatedAt          string    `json:"created_at"`
+	UpdatedAt          string    `json:"updated_at"`
+	ResponseStatusCode int       `json:"response_status_code"`
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	body, err := io.ReadAll(r.Body) // Use io.ReadAll no lugar de ioutil.ReadAll
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Erro ao ler o body da requisição", http.StatusBadRequest)
 		return
@@ -35,7 +39,19 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if user.ResponseStatusCode == 400 {
+		http.Error(w, "Erro ao criar usuário", http.StatusBadRequest)
+		return
+	}
+
+	if user.ResponseStatusCode == 500 {
+		http.Error(w, "Erro ao criar usuário", http.StatusInternalServerError)
+		return
+	}
+
 	user.ID = id
+	user.CreatedAt = time.Now().Format(time.RFC3339)
+	user.UpdatedAt = time.Now().Format(time.RFC3339)
 
 	fmt.Printf("Usuário criado: %+v\n", user) // Exemplo de output
 
