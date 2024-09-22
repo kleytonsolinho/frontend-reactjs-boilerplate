@@ -1,5 +1,5 @@
 import { UserAlreadyTakenError } from '@/api/domain/errors/user-already-taken-error'
-import { CreateUserUseCaseInputDTO } from '@/api/infra/dtos/@example/create-user-dto'
+import { PostUserUseCaseInputDTO } from '@/api/infra/dtos/@example/create-user-dto'
 import { InMemoryCookieClient } from '@/api/infra/gateways/cookie/in-memory/in-memory-cookie-client'
 import { InMemoryHttpClient } from '@/api/infra/gateways/http/in-memory/in-memory-http-client'
 import { describe, expect, it } from 'vitest'
@@ -16,7 +16,7 @@ const body = {
 	name: 'any_name',
 	email: 'any_email',
 	password: 'any_password',
-} as CreateUserUseCaseInputDTO
+} as PostUserUseCaseInputDTO
 
 const makeSut = (): SutTypes => {
 	const httpClient = new InMemoryHttpClient()
