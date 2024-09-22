@@ -1,6 +1,6 @@
 import {
-	CreateUserUseCaseInputDTO,
-	CreateUserUseCaseOutputDTO,
+	PostUserUseCaseInputDTO,
+	PostUserUseCaseOutputDTO,
 } from '@/api/infra/dtos/@example/create-user-dto'
 import {
 	HttpClientError,
@@ -11,9 +11,9 @@ import { UserAlreadyTakenError } from '../../errors/user-already-taken-error'
 
 export interface ICreateUserUseCase {
 	execute: (
-		data: CreateUserUseCaseInputDTO,
+		data: PostUserUseCaseInputDTO,
 		token: string
-	) => Promise<CreateUserUseCaseOutputDTO>
+	) => Promise<PostUserUseCaseOutputDTO>
 }
 
 export class CreateUserUseCase implements ICreateUserUseCase {
@@ -26,9 +26,9 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 	}
 
 	public async execute(
-		data: CreateUserUseCaseInputDTO,
+		data: PostUserUseCaseInputDTO,
 		token?: string
-	): Promise<CreateUserUseCaseOutputDTO> {
+	): Promise<PostUserUseCaseOutputDTO> {
 		const httpResponse = await this.httpClient.execute({
 			url: this.url,
 			method: 'POST',
