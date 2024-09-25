@@ -18,7 +18,8 @@
     "generate:lang": "i18next-resources-for-ts interface -i ./src/language/pt -o ./src/language/resources.d.ts",
     "watch-i18next": "chokidar 'src/language/pt/pt-BR.json' -c 'yarn generate:lang'",
     "architecture:deep": "depcruise --include-only \"^src\" --output-type dot src | dot -T svg > dependencygraph.svg",
-    "architecture:madge": "madge --extensions ts,tsx --image graph.svg src/"
+    "architecture:madge": "madge --extensions ts,tsx --image graph.svg src/",
+    "architecture:bundle": "vite-bundle-visualizer"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
@@ -42,6 +43,7 @@
     "sonner": "^1.4.1",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "vite-bundle-visualizer": "^1.2.1",
     "zustand": "^4.5.1"
   },
   "devDependencies": {
